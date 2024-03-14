@@ -9,6 +9,14 @@ body {
   font-family: 'Orbitron', sans-serif;
 }
 
+button {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+
 .container {
   height: 100vh;
   width: 80vw;
@@ -43,6 +51,14 @@ body {
   text-align: center;
 }
 
+.menu-options {
+  padding: 10px;
+  min-height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .gameboard {
   background-color: rgb(223, 223, 223);
   min-width: 500px;
@@ -67,4 +83,8 @@ body {
 img {
   width: 100%;
   height: auto;
+}
+
+#btn-reset {
+
 }

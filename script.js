@@ -1,24 +1,25 @@
 'use strict';
 
-const padList = document.querySelectorAll('.pad');
+const gameboardEl = document.querySelector('.gameboard');
 
 let currentPlayer = 0;
 let arr = new Array(9);
 const score = [0, 0];
 
-padList.forEach((pad) => {
-  pad.addEventListener('click', doMark);
-});
+gameboardEl.addEventListener('click', doMark);
 
-function doMark() {
-  const imgEl = document.createElement('img');
-  imgEl.src = `./assets/${currentPlayer === 0 ? 'o' : 'x'}.svg`;
-  this.append(imgEl);
-  const index = Number(this.id);
-  arr[index] = currentPlayer;
-  this.removeEventListener('click', doMark);
-  checkForWinner();
-  currentPlayer = currentPlayer === 0 ? 1 : 0;
+function doMark(e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains('pad')) {
+    const imgEl = document.createElement('img');
+    imgEl.src = `./assets/${currentPlayer === 0 ? 'o' : 'x'}.svg`;
+    e.target.insertAdjacentElement("afterbegin", imgEl);
+    const index = Number(e.target.id);
+    arr[index] = currentPlayer;
+    checkForWinner();
+    currentPlayer = currentPlayer === 0 ? 1 : 0;
+  }
 }
 
 function checkForWinner() {
@@ -51,5 +52,7 @@ function checkForWinner() {
     const scoreEl = document.querySelector(`.score-${currentPlayer}`);
     score[currentPlayer]++;
     scoreEl.textContent = score[currentPlayer];
+
+    gameboardEl.removeEventListener('click', doMark);
   }
 }
